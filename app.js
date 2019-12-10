@@ -122,8 +122,8 @@ app.post("/search", function(req, res) {
 });
 
 
-//CREATE - add new campgrounds to database
-app.post("/alumni", function(req, res) {
+//CREATE - add new alumni to database
+app.post("/alumni", isLoggedIn, function(req, res) {
     // get data from form and add to campgrounds array
     var name = req.body.name;
     var image = req.body.image;
@@ -133,6 +133,13 @@ app.post("/alumni", function(req, res) {
     var location = req.body.location;
     var mobile = req.body.mobile;
     var email = req.body.email;
+    console.log(req.user);
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+
+
 
     var newAlumni = {
         name: name,
@@ -142,7 +149,8 @@ app.post("/alumni", function(req, res) {
         location: location,
         college: college,
         mobile: mobile,
-        email: email
+        email: email,
+        author: author
 
     };
 
@@ -152,6 +160,7 @@ app.post("/alumni", function(req, res) {
             console.log(err);
         } else {
             // redirect back to campgrounds page
+            console.log(newlyCreated);
             res.redirect("/alumni"); //
         }
     });
@@ -159,7 +168,7 @@ app.post("/alumni", function(req, res) {
 
 
 //NEW - show form to create new campground 
-app.get("/alumni/new", function(req, res) {
+app.get("/alumni/new", isLoggedIn, function(req, res) {
     res.render("new.ejs")
 });
 
