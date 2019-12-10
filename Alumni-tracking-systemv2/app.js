@@ -192,8 +192,17 @@ app.get("/alumni/:id", function(req, res) {
 //======================================================
 //EDIT ROUTES
 //=======================================================
-app.get("alumni/:id/edit", function(req, res) {
-    res.send("hello");
+app.get("/alumni/:id/edit", function(req, res) {
+
+    Alumni.findById(req.params.id, function(err, foundalumni) {
+        if (err) {
+            console.log(err);
+
+        } else {
+            res.render("alumni/edit", { alumni: foundalumni });
+        }
+    });
+
 });
 
 
@@ -201,7 +210,15 @@ app.get("alumni/:id/edit", function(req, res) {
 //======================================================
 //UPDATE ROUTES
 //=======================================================
-
+app.put("/alumni/:id", function(req, res) {
+    Alumni.findByIdAndUpdate(req.params.id, req.body.alumni, function(err, updatedalumni) {
+        if (err) {
+            res.redirect("/alumni");
+        } else {
+            res.redirect("/alumni/" + req.params.id);
+        }
+    });
+});
 
 //======================================================
 //AUTH ROUTES
