@@ -46,6 +46,12 @@ app.get("/", function(req, res) {
     res.render("landing");
 });
 
+// Alumni.remove({}, function(err) {
+//     if (err) {
+//         console.log(err);
+//     }
+// });
+
 //INDEX ROUTE - show all alumnis
 app.get("/alumni", function(req, res) {
     // Get all alumnis from DB
@@ -59,6 +65,13 @@ app.get("/alumni", function(req, res) {
         }
     });
 
+});
+
+//////////////////////////////////
+//SEARCH Alumni
+//////////////////////////////
+app.get("/alumni/search", function(req, res) {
+    res.render("search.ejs")
 });
 
 app.post("/search", function(req, res) {
@@ -118,6 +131,8 @@ app.post("/alumni", function(req, res) {
     var batch = req.body.batch;
     var college = req.body.college;
     var location = req.body.location;
+    var mobile = req.body.mobile;
+    var email = req.body.email;
 
     var newAlumni = {
         name: name,
@@ -125,7 +140,9 @@ app.post("/alumni", function(req, res) {
         branch: branch,
         batch: batch,
         location: location,
-        college: college
+        college: college,
+        mobile: mobile,
+        email: email
 
     };
 

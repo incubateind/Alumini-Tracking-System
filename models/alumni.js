@@ -6,7 +6,9 @@ var alumniSchema = new mongoose.Schema({
     batch: String,
     college: String,
     image: String,
-    location: String
+    location: String,
+    mobile: String,
+    email: String
 });
 
 
