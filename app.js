@@ -4,7 +4,10 @@ var express = require("express"),
     mongoose = require("mongoose"),
     LocalStrategy = require("passport-local"),
     passport = require("passport"),
-    User = require("./models/user");
+    User = require("./models/user"),
+    Alumni = require("./models/alumni");
+
+
 
 mongoose.connect("mongodb://localhost:27017/alumni_connects", { useUnifiedTopology: true, useNewUrlParser: true }); //create yelpcamp db inside mongodb
 
@@ -39,40 +42,6 @@ app.use(function(req, res, next) {
 });
 ////////////////////////////////////////////////////////////////////
 
-// SCHEMA SETUP
-var alumniSchema = new mongoose.Schema({
-    name: String,
-    branch: String,
-    batch: String,
-    college: String,
-    image: String,
-    location: String
-});
-
-
-//creates model with above schema and has methods such as .find etc.
-
-var Alumni = mongoose.model("Alumni", alumniSchema);
-
-
-// Alumni.create({
-//     name: "Aman Kumar",
-//     image: "https://he-s3.s3.amazonaws.com/media/avatars/amankumarkeshu/resized/180/photo.jpg",
-//     branch: "Computer Science and Engineering",
-//     batch: "2017-2021",
-//     college: "Birla institute of technology ,mesra ",
-//     location: "Ranchi",
-
-// }, function(err, alumni) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("NEW Alumni Added: ");
-//         console.log(alumni);
-//     }
-// })
-
-
 app.get("/", function(req, res) {
     res.render("landing");
 });
@@ -91,6 +60,54 @@ app.get("/alumni", function(req, res) {
     });
 
 });
+
+app.post("/search", function(req, res) {
+
+    var alumni = req.body;
+    console.log(alumni);
+
+    var query, query2;
+    var name, batch;
+
+    if (req.body.name) {
+        query = req.body.name;
+    } else {
+        query = { name: { $exists: true } };
+    }
+
+    if (req.body.batch) {
+        query2 = req.body.batch;
+    } else {
+        query2 = { batch: { $exists: true } };
+    }
+    var college = req.body.college;
+
+    Alumni.find({ name: query, batch: query2, college: college }, function(err, alumni) {
+
+        if (err) {
+            console.log("OOPS there's an error");
+
+        } else {
+
+            res.render("index.ejs", { alumni: alumni });
+        }
+
+    });
+
+    // Alumni.find({ title: { $regex: new RegExp(title1) } }, function(err, blog) {
+    // if (err) {
+    //     console.log("OOPS there's an error");
+
+    // } else {
+    //     res.render("index.ejs", { blog: blog });
+    // }
+    // });
+
+    //  db.products.find( { sku: { $regex: /789$/ } } )
+
+
+});
+
 
 //CREATE - add new campgrounds to database
 app.post("/alumni", function(req, res) {
@@ -123,6 +140,7 @@ app.post("/alumni", function(req, res) {
     });
 });
 
+
 //NEW - show form to create new campground 
 app.get("/alumni/new", function(req, res) {
     res.render("new.ejs")
@@ -154,6 +172,7 @@ app.get("/register", function(req, res) {
 
 //Handle user sign up
 app.post("/register", function(req, res) {
+
     var newuser = new User({ username: req.body.username });
 
     User.register(newuser, req.body.password, function(err, user) {
@@ -175,13 +194,11 @@ app.post("/register", function(req, res) {
 //LOGIN routes
 
 app.get("/login", function(req, res) {
-        res.render("login");
+    res.render("login");
 
-        //res.redirect("/campgrounds");
+});
 
-
-    })
-    //HAndle login page
+//HAndle login page
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/alumni",
     failureRedirect: "/login"
