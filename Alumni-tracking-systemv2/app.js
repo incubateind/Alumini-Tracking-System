@@ -10,7 +10,7 @@ var express = require("express"),
 
 
 
-mongoose.connect("mongodb://localhost:27017/alumni_connects_v2", { useUnifiedTopology: true, useNewUrlParser: true }); //create yelpcamp db inside mongodb
+mongoose.connect("mongodb://localhost:27017/alumni_connects_v2", { useUnifiedTopology: true, useNewUrlParser: true }); //create alumni db inside mongodb
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -192,7 +192,7 @@ app.get("/alumni/:id", function(req, res) {
 //======================================================
 //EDIT ROUTES
 //=======================================================
-app.get("/alumni/:id/edit", function(req, res) {
+app.get("/alumni/:id/edit", checkAuthorization, function(req, res) {
 
     Alumni.findById(req.params.id, function(err, foundalumni) {
         if (err) {
@@ -210,7 +210,7 @@ app.get("/alumni/:id/edit", function(req, res) {
 //======================================================
 //UPDATE ROUTES
 //=======================================================
-app.put("/alumni/:id", function(req, res) {
+app.put("/alumni/:id", checkAuthorization, function(req, res) {
     Alumni.findByIdAndUpdate(req.params.id, req.body.alumni, function(err, updatedalumni) {
         if (err) {
             res.redirect("/alumni");
@@ -219,6 +219,44 @@ app.put("/alumni/:id", function(req, res) {
         }
     });
 });
+
+
+
+//======================================================
+//DESTROY ROUTE
+//=======================================================
+app.delete("/alumni/:id", checkAuthorization, function(req, res) {
+    Alumni.findByIdAndRemove(req.params.id, function(err, newalumni) {
+        if (err) {
+            res.redirect("/alumni");
+
+        } else {
+            res.redirect("/alumni");
+        }
+    });
+});
+
+function checkAuthorization(req, res, next) {
+    if (req.isAuthenticated()) {
+        Alumni.findById(req.params.id, function(err, foundalumni) {
+            if (err) {
+                res.redirect("back");
+
+            } else {
+
+
+                if (foundalumni.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+
+    } else {
+        res.redirect("back");
+    }
+}
 
 //======================================================
 //AUTH ROUTES
