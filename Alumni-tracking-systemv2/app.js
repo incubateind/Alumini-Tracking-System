@@ -7,7 +7,8 @@ var express = require("express"),
     passport = require("passport"),
     User = require("./models/user"),
     Alumni = require("./models/alumni"),
-    request = require('request');
+    request = require('request'),
+    nodemailer = require('nodemailer');
 
 
 
@@ -75,13 +76,13 @@ app.get("/alumni", function(req, res) {
 //SEARCH Alumni
 //////////////////////////////
 app.get("/alumni/search", function(req, res) {
-    res.render("search.ejs")
+    res.render("search.ejs");
 });
 
 app.post("/search", function(req, res) {
 
     var alumni = req.body;
-    console.log(alumni);
+
 
     var query, query2;
     var name, batch;
@@ -99,6 +100,9 @@ app.post("/search", function(req, res) {
     }
     var college = req.body.college;
 
+    //console.log(college + " HEheh");
+    // res.send("HI MAN THIS IS SEARCH");
+
     Alumni.find({ name: query, batch: query2, college: college }, function(err, alumni) {
 
         if (err) {
@@ -106,10 +110,16 @@ app.post("/search", function(req, res) {
 
         } else {
 
+            alumni.forEach(function(alumni_) {
+                // console.log(alumni_.name + " HAHA");
+            });
+
             res.render("index.ejs", { alumni: alumni });
         }
 
     });
+
+
 
     // Alumni.find({ title: { $regex: new RegExp(title1) } }, function(err, blog) {
     // if (err) {
@@ -125,6 +135,66 @@ app.post("/search", function(req, res) {
 
 });
 
+//======================================================
+//Send Email ROUTES
+//=======================================================
+app.get("/alumni/:id/email", function(req, res) {
+
+    Alumni.findById(req.params.id, function(err, foundalumni) {
+        if (err) {
+            console.log(err);
+        } else {
+            //render show template with that campground
+            console.log(foundalumni);
+            res.render("email", {
+                alumni: foundalumni
+            });
+        }
+    });
+
+    // res.render("email.ejs", { alumni: alumni });
+});
+
+app.post("/alumni/:id/email", function(req, res) {
+    //res.render("email.ejs");
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'kumaramankeshu@gmail.com',
+            pass: ''
+        }
+    });
+    const string1 = req.params;
+    var subject = req.body.Subject;
+    var text = req.body.text;
+
+    Alumni.findById(req.params.id, function(err, foundalumni) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/alumni/" + foundalumni._id);
+
+            var string = 'kumaramankeshu@gmail.com' + ', ' + 'sonalranisr88@gmail.com';
+
+            var mailOptions = {
+                from: 'kumaramankeshu@gmail.com',
+                to: foundalumni.email,
+                subject: subject,
+                text: text
+                    // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+            };
+
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+        }
+    });
+});
 
 //CREATE - add new alumni to database
 app.post("/alumni", isLoggedIn, function(req, res) {
@@ -166,6 +236,7 @@ app.post("/alumni", isLoggedIn, function(req, res) {
                     branch: req.body.branch,
                     batch: req.body.batch,
                     address: req.body.address,
+                    college: req.body.college,
                     city: city,
                     state: state,
                     country: country,
@@ -180,6 +251,7 @@ app.post("/alumni", isLoggedIn, function(req, res) {
                 };
                 //redirect back to thriftfinder page
                 //create a new thrift store and save to database
+                console.log("Reached Alumni");
                 Alumni.create(newalumni, function(err, newlyCreated) {
                     if (err) {
                         console.log(err);
