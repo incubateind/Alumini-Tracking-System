@@ -1,3 +1,626 @@
-#delete-form {
+/* ================ */
+
+
+/* ===  Global === */
+
+
+/* ================ */
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 28px;
+}
+
+
+/* ================ */
+
+
+/* == Index Page == */
+
+
+/* ================ */
+
+.thumbnail {
+    min-height: 280px;
+    padding: 0;
+}
+
+.thumbnail>img {
+    width: 100%;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.thumbnail-img {
+    padding: 0;
+    min-height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+@media(max-width: 768px) {
+    .thumbnail {
+        min-height: 380px;
+    }
+    .thumbnail-img {
+        padding: 0;
+        min-height: 300px;
+        background-size: cover;
+    }
+}
+
+.thumbnail-img img {
+    width: 100%;
+}
+
+.picture-header {
+    min-height: 75vh;
+    background: linear-gradient(to right, rgba(28, 111, 160, 0.699), rgba(136, 21, 139, 0.692)), url(../images/1.jpg) no-repeat;
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.welcome-message {
+    text-align: center;
+    color: white;
+}
+
+.welcome-message h1 {
+    font-family: Pacifico;
+    font-size: 4.5em;
+    margin: .7em;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px rgb(128, 1, 128);
+}
+
+.input-group .form-control,
+.index-search {
+    padding: 22px;
+    border-radius: 5px 0 0 5px !important;
+}
+
+.welcome-message p {
+    font-size: 1.6em;
+}
+
+.caption-link {
+    text-align: left;
+    margin-bottom: -4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.search-wrapper {
+    padding-bottom: 25px;
+}
+
+.glyphicon-search {
+    color: rgb(128, 1, 128);
+    padding: 9px;
+}
+
+
+/* change to a primary button (solid first) */
+
+.purple-btn {
+    color: rgb(128, 1, 128);
+    border: 1px solid rgb(128, 1, 128);
+}
+
+.purple-btn:hover,
+.purple-btn:hover:focus,
+.purple-btn:active,
+.btn-default:active:focus {
+    outline: none;
+    color: white;
+    border: 1px solid rgb(128, 1, 128);
+    background-color: rgb(128, 1, 128);
+}
+
+.btn-default.focus,
+.btn-default:focus {
+    color: rgb(128, 1, 128);
+    border: 1px solid rgb(128, 1, 128);
+    background-color: white;
+}
+
+
+/* ============================ */
+
+
+/* == Thrift Store Show Page == */
+
+
+/* ============================= */
+
+.page-content {
+    padding-top: 2.5em;
+}
+
+@media(max-width: 768px) {
+    .page-content {
+        padding-top: 2em;
+    }
+}
+
+.thrift-show {
+    padding-top: 48px;
+}
+
+.open-now {
+    color: #27ae60;
+}
+
+.closed {
+    color: #c0392b;
+}
+
+.edit-business-number,
+.edit-business-times {
+    padding-left: 10px;
+}
+
+.edit-business-number {
+    color: white;
+}
+
+.thriftstore-location {
+    margin: 30px 0 30px 0;
+}
+
+
+/* ============================ */
+
+
+/* Thriftstore Display on Index */
+
+
+/* ============================ */
+
+.thrift-gallery {
+    padding-top: 10px;
+    padding-bottom: 80px;
+}
+
+.add-store {
+    font-size: 130%;
+    float: right;
+}
+
+#onhovericon {
+    float: right;
+    visibility: hidden;
+    margin-top: -20px;
+}
+
+#addicon:hover~#onhovericon {
+    visibility: visible;
+}
+
+.thriftstore-display-header {
+    color: rgb(90, 90, 90);
+    margin-bottom: 30px;
+}
+
+.thriftstore-row {
+    margin-bottom: 30px;
+}
+
+.city-display {
+    padding-left: 9px;
+}
+
+
+/* ================ */
+
+
+/* ==== Navbar ==== */
+
+
+/* ================ */
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.navbar-default {
+    border-top: 4px solid rgb(128, 1, 128);
+}
+
+.nav-facebook-img {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.index-navbar {
+    position: absolute;
+    width: 100%;
+}
+
+.index-navbar a {
+    color: white;
+}
+
+.nav>li>a.index-nav-item:focus,
+.nav>li>a.index-nav-item:hover {
+    background-color: transparent;
+    background: transparent;
+}
+
+@media only screen and (min-width: 768px) {
+    .nav>li>a.index-nav-item:focus,
+    .nav>li>a.index-nav-item:hover {
+        border: 0 0 2px 0 white;
+        border-bottom: solid white 2px;
+    }
+}
+
+.navbar-inner.index-navbar {
+    background: transparent;
+}
+
+.hamburger {
+    color: white;
+}
+
+
+/* =============================== */
+
+
+/* = Site Form = */
+
+
+/* =============================== */
+
+.site-form {
+    width: 100%;
+    max-width: 370px;
+    margin: 20px auto;
+}
+
+
+/* =============================== */
+
+
+/* = Showpage Comment and Delete = */
+
+
+/* =============================== */
+
+.comment-edit {
+    padding-left: 0;
+    padding-right: 8;
+}
+
+.comment-edit-cancel {
+    padding-left: 0;
+    padding-right: 8;
+}
+
+.comment-text {
+    padding-top: 10px;
+}
+
+.delete-button {
+    padding: 0;
+    border: 0;
+}
+
+#delete {
     display: inline;
+}
+
+
+/* ============================ */
+
+
+/* ==== Price-Group Widget ==== */
+
+
+/* ============================ */
+
+.price-group-wrapper {
+    position: relative;
+    min-height: 2em;
+}
+
+.price-group-wrapper .price-group {
+    position: absolute;
+}
+
+.price-group {
+    border: none;
+    float: left;
+}
+
+.price-group>input {
+    display: none;
+}
+
+.price-group>label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f155";
+}
+
+.price-group>label {
+    color: #ddd;
+    float: right;
+}
+
+
+/***** CSS Magic to Highlight Dollar Signs on Hover *****/
+
+.price-group>input:checked~label,
+
+/* show dark green dollar sign when clicked */
+
+.price-group:not(:checked)>label:hover,
+
+/* hover current dollar sign */
+
+.price-group:not(:checked)>label:hover~label {
+    color: #8CC152;
+}
+
+
+/* hover previous dollar sign in list */
+
+.price-group>input:checked+label:hover,
+
+/* hover current dollar sign when changing price-group */
+
+.price-group>input:checked~label:hover,
+.price-group>label:hover~input:checked~label,
+
+/* lighten current selection */
+
+.price-group>input:checked~label:hover~label {
+    color: #A0D468;
+}
+
+.price-group-output {
+    color: #177718;
+}
+
+.price-display {
+    color: #177718;
+    margin-bottom: 5px;
+}
+
+.price-display.fa-usd-gray {
+    color: silver;
+}
+
+.price-display:first-of-type {
+    margin-left: 10px;
+}
+
+.responsive-iframe {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+
+
+/* 16x9 Aspect Ratio */
+
+.responsive-iframe-16x9 {
+    padding-bottom: 56.25%;
+}
+
+
+/* 4x3 Aspect Ratio */
+
+.responsive-iframe-4x3 {
+    padding-bottom: 75%;
+}
+
+.responsive-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ============= */
+
+
+/* Alert Styling */
+
+
+/* ============= */
+
+.alert-account {
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+
+/* ================== */
+
+
+/* Login and Register */
+
+
+/* ================== */
+
+.aligner {
+    width: 100%;
+    min-height: 70vh;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aligner-item {
+    width: 100%;
+}
+
+
+/* ============================ */
+
+
+/* ==========FOOTER============ */
+
+
+/* ============================ */
+
+footer {
+    background-color: #333;
+    padding: 40px;
+    font-size: 100%;
+}
+
+.footer-nav {
+    list-style: none;
+    float: left;
+}
+
+.social-links {
+    list-style: none;
+    float: right;
+}
+
+.footer-nav li,
+.social-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-nav li:last-child {
+    margin-right: 0;
+}
+
+.social-links li:last-child {
+    margin-right: 40px;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+    color: #ddd;
+}
+
+.social-links li a:link,
+.social-links li a:visited {
+    font-size: 160%;
+}
+
+.ion-social-facebook,
+.ion-social-twitter,
+.ion-social-instagram,
+.ion-social-snapchat {
+    transition: color 0.2s;
+}
+
+.ion-social-facebook:hover {
+    color: #3b5998;
+}
+
+.ion-social-twitter:hover {
+    color: #55acee;
+}
+
+.ion-social-instagram:hover {
+    color: #e95950;
+}
+
+.ion-social-snapchat:hover {
+    color: #fffc00;
+}
+
+footer p {
+    color: #888;
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+/*=========================*/
+
+
+/*-----Media Queries -------*/
+
+
+/*=========================*/
+
+@media(max-width: 560px) {
+    .footer-nav li,
+    .social-links li {
+        display: block !important;
+    }
+    .mobile-search {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 767px) {
+    .dropdown-toggle {
+        display: none;
+    }
+    #search_concept {
+        display: none;
+    }
+    .input-group .form-control:not(:first-child):not(:last-child) {
+        border-radius: 3px;
+    }
+    .thrift-show {
+        padding-top: 10px;
+    }
+    .nav-facebook-img {
+        padding: 5px 0 5px 15px;
+    }
+}
+
+@media(min-width: 750px) {
+    #navbar {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}
+
+@media(max-width: 624px) {
+    .description {
+        display: none;
+    }
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0px;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
 }

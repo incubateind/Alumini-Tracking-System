@@ -7,13 +7,18 @@ var alumniSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
-        username: String
+        username: String,
+        name: String
     },
     branch: String,
     batch: String,
     college: String,
     image: String,
-    location: String,
+    address: String,
+    city: String,
+    state: String,
+    phone: String,
+    country: String,
     mobile: String,
     email: String
 });

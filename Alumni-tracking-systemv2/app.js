@@ -6,7 +6,8 @@ var express = require("express"),
     LocalStrategy = require("passport-local"),
     passport = require("passport"),
     User = require("./models/user"),
-    Alumni = require("./models/alumni");
+    Alumni = require("./models/alumni"),
+    request = require('request');
 
 
 
@@ -15,6 +16,7 @@ mongoose.connect("mongodb://localhost:27017/alumni_connects_v2", { useUnifiedTop
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
@@ -126,47 +128,72 @@ app.post("/search", function(req, res) {
 
 //CREATE - add new alumni to database
 app.post("/alumni", isLoggedIn, function(req, res) {
-    // get data from form and add to campgrounds array
-    var name = req.body.name;
-    var image = req.body.image;
-    var branch = req.body.branch;
-    var batch = req.body.batch;
-    var college = req.body.college;
-    var location = req.body.location;
-    var mobile = req.body.mobile;
-    var email = req.body.email;
-    //console.log(req.user);
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    };
+    //get data from form and add to thriftstore array
+    request('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAPzLdcKEPCe4SQf3-cdSnq5vmh_MRaHCs' +
 
+        '&address=' + encodeURIComponent(req.body.address),
+        function(error, response, body) {
+            if (error) {
+                console.log('error!', error);
+            } else {
+                var data = JSON.parse(body);
+                // console.log('data: ', util.inspect(data, { showHidden: false, depth: null }))
 
+                if (data.results && data.results[0] && ["address_components"]) {
+                    var addressComponents = data.results[0]["address_components"]
+                    for (var i = 0; i < addressComponents.length; i++) {
+                        if (
+                            addressComponents[i]['types'].indexOf('sublocality_level_1') > -1 ||
+                            addressComponents[i]['types'].indexOf('locality') > -1) {
+                            var city = addressComponents[i]['long_name'];
+                        }
+                        if (addressComponents[i]['types'].indexOf('administrative_area_level_1') > -1) {
+                            var state = addressComponents[i]['short_name'];
+                        }
+                        if (addressComponents[i]['types'].indexOf('country') > -1) {
+                            var country = addressComponents[i]['long_name'];
+                        }
+                    }
+                } else {
+                    var city = null,
+                        state = null,
+                        country = null;
+                }
 
-    var newAlumni = {
-        name: name,
-        image: image,
-        branch: branch,
-        batch: batch,
-        location: location,
-        college: college,
-        mobile: mobile,
-        email: email,
-        author: author
+                var newalumni = {
+                    name: req.body.name,
+                    image: req.body.image,
+                    branch: req.body.branch,
+                    batch: req.body.batch,
+                    address: req.body.address,
+                    city: city,
+                    state: state,
+                    country: country,
+                    mobile: req.body.mobile,
+                    email: req.body.email,
 
-    };
+                    author: {
+                        id: req.user._id,
+                        username: req.user.username,
+                        name: req.user.name
+                    }
+                };
+                //redirect back to thriftfinder page
+                //create a new thrift store and save to database
+                Alumni.create(newalumni, function(err, newlyCreated) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(newlyCreated);
+                        res.redirect("/alumni");
+                    }
+                });
+            }
 
-    //create a new campground and save to db
-    Alumni.create(newAlumni, function(err, newlyCreated) {
-        if (err) {
-            console.log(err);
-        } else {
-            // redirect back to campgrounds page
-            console.log(newlyCreated);
-            res.redirect("/alumni"); //
-        }
-    });
+        });
+
 });
+
 
 
 //NEW - show form to create new campground 
