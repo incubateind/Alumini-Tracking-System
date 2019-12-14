@@ -8,7 +8,10 @@ var express = require("express"),
     User = require("./models/user"),
     Alumni = require("./models/alumni"),
     request = require('request'),
-    nodemailer = require('nodemailer');
+    nodemailer = require('nodemailer'),
+    twilio = require('twilio');
+var config = require('./config/config.js');
+var client = new twilio(config.twilio.accountSid, config.twilio.authToken);
 
 
 
@@ -155,6 +158,8 @@ app.get("/alumni/:id/email", function(req, res) {
     // res.render("email.ejs", { alumni: alumni });
 });
 
+
+
 app.post("/alumni/:id/email", function(req, res) {
     //res.render("email.ejs");
 
@@ -196,6 +201,60 @@ app.post("/alumni/:id/email", function(req, res) {
     });
 });
 
+
+//======================================================
+//Send Message ROUTES
+//=======================================================
+app.get("/alumni/:id/message", function(req, res) {
+    Alumni.findById(req.params.id, function(err, foundalumni) {
+        if (err) {
+            console.log(err);
+        } else {
+            //render show template with that campground
+            console.log(foundalumni);
+            res.render("message", {
+                alumni: foundalumni
+            });
+        }
+    });
+
+});
+app.post("/alumni/:id/message", function(req, res) {
+
+
+    var sender = '+17209247273';
+
+    var message = req.body.text;
+    // Details about Visitor $ { name }
+    // Name: $ { name }
+    // Email: $ { email }
+    // Phone: $ { number }
+    // Checkin Time: $ { currtime }
+    // Visiting ID: $ { id }
+    // `;
+
+    Alumni.findById(req.params.id, function(err, foundalumni) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/alumni/" + foundalumni._id);
+            receiver = foundalumni.mobile;
+            client.messages.create({
+                    to: receiver,
+                    from: sender,
+                    body: message
+                })
+                .then(message => console.log(`
+                Checkin SMS sent to Host: $ { foundalumni.name }
+                ` + message.sid))
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        }
+    })
+
+});
 //CREATE - add new alumni to database
 app.post("/alumni", isLoggedIn, function(req, res) {
     //get data from form and add to thriftstore array
@@ -321,6 +380,7 @@ app.put("/alumni/:id", checkAuthorization, function(req, res) {
 
 
 
+
 //======================================================
 //DESTROY ROUTE
 //=======================================================
@@ -417,8 +477,6 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect("/login");
 }
-
-
 
 app.listen(3000, function() {
     console.log(" Jai shree ram Alumni server has started!");
