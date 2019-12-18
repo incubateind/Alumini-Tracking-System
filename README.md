@@ -1,9 +1,5 @@
 # Alumini-Tracking-System
-Alumini Tracking System
-
-
-# GateKeeper
-> An Entry Management Software
+> An Alumini Tracking System
 
 Alumini Tracking System ( Currently there is no mechanism for colleges to keep a track of students passed out.
 Hence the problem is to develop a web based application for colleges to keep a track of Alumini)
