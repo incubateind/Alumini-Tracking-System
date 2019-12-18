@@ -62,9 +62,6 @@ P.S: Twilio API has been used for sending out SMS and Nodejs nodemailer has been
 
 7.	Security features with login for every user.
 
-NOTE : The screenshots of the emails and SMS received by the visitor and the host during checkin        and checkout can be found in the Screenshots folder in this repository.The link for the          same can be found below in the Links section. 
-
-
 ## Links
 
 - Repository:  https://github.com/amankumarkeshu/Alumini-Tracking-System
