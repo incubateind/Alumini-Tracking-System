@@ -1,13 +1,13 @@
 var config = {};
 
 config.twilio = {
-    authToken: 'c770957d4d21cf57d53c2c9bdf70b0a3',
-    accountSid: 'AC53bf582537a673dea36adc82ceefcb01'
+    authToken: '',
+    accountSid: ''
 };
 
 config.mlab = {
-    username: ' ',
-    password: ' '
+    username: '@gmail.com',
+    password: ''
 };
 
 config.port = 3000;

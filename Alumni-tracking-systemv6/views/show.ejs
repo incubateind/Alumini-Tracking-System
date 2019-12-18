@@ -1,0 +1,119 @@
+<% include partials/header %>
+
+    <!-- <h1>
+        <%=alumni.name%>
+    </h1>
+
+    <img src="<%=alumni.image%>">
+
+    <h2>
+        <%=alumni.batch%>
+    </h2>
+
+    <h2>
+        <%=alumni.college%>
+    </h2>
+
+    <h3>
+        <%=alumni.address%>
+    </h3>
+
+    <h3>
+        <%=alumni.branch%>
+    </h3> -->
+
+    <!-- <% if(currentUser && alumni.author.id.equals(currentUser._id) ) {%>
+        <a class="btn btn-warning" href="/alumni/<%=alumni._id%>/edit"> EDIT</a>
+        <form style="display: inline;" action="/alumni/<%= alumni._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">DELELTE</button>
+        </form>
+
+        <% } %> -->
+
+
+
+    <% if(alumni.address) { %>
+        <div class="col-md-3 thriftstore-location">
+            <p><strong>Address:</strong><br>
+                <%= alumni.address %>
+                    <!--  <br> <%= alumni.city%>, <%=alumni.state%> -->
+            </p>
+            <div class="google-map responsive-iframe responsive-iframe-4x3">
+                <iframe width="300" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPzLdcKEPCe4SQf3-cdSnq5vmh_MRaHCs&q=<%= alumni.address.replace(/ /g, '+') %> <%=alumni.city%> <%=alumni.state%>" allowfullscreen>
+                        </iframe>
+            </div>
+        </div>
+
+        <% } %>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 thrift-show">
+                        <div class="thumbnail" style="width: 100%;">
+                            <img style="width: 100%;" class="image-responsive" src="<%= alumni.image %>">
+                            <div class="caption-full">
+
+                                <!-- <h4 class="pull-right price-group-output">
+                            <% for(i = 0; i < alumni.pricegroup; i++) {%>
+                                <i class="fa fa-usd" aria-hidden="true"></i>
+                                <% } %>
+                                    <% for(i = alumni.pricegroup; i < 5; i++) {%>
+                                        <i class="price-display fa fa-usd fa-usd-gray" aria-hidden="true"></i>
+                                        <% } %>
+                        </h4> -->
+                                <h4>
+                                    <a>
+                                        <%=alumni.name%>
+                                    </a>
+                                </h4>
+                                <p>
+                                    <%= alumni.batch %>
+                                </p>
+                                <p>
+                                    <em>Submitted By: <%= (alumni.author.name ||  alumni.author.username) %></em>
+                                </p>
+                                <% if(currentUser && alumni.author.id && alumni.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-xs btn-warning" href="/alumni/<%= alumni._id %>/edit">Edit</a>
+                                    <form id="delete" action="/alumni/<%= alumni._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-xs btn-danger">Delete</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p class="lead">MORE DETAILS</p>
+                        <div class="list-group">
+                            <li class="list-group-item ">
+                                <%=alumni.email%>
+                            </li>
+                            <li class="list-group-item">
+                                <%=alumni.mobile%>
+                            </li>
+                            <li class="list-group-item">
+                                <%=alumni.branch%>
+                            </li>
+                            <li class="list-group-item">
+                                <%=alumni.college%>
+                            </li>
+
+                            <li class="list-group-item  ">
+                                <a href="/alumni/<%=alumni._id%>/email">  Send Email</a>
+
+                            </li>
+
+                            <li class="list-group-item  ">
+                                <a href="/alumni/<%=alumni._id%>/message">  Send Message</a>
+
+                            </li>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <% include partials/footer %>

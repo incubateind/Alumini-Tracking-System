@@ -1,0 +1,88 @@
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url(https://media.gettyimages.com/photos/multiethnic-teenage-graduates-throw-caps-in-air-picture-id896458598?s=2048x2048)
+}
+
+.slideshow li:nth-child(2) {
+    background-image: url(https://cdn.pixabay.com/photo/2015/10/11/17/39/library-982688__340.jpg);
+    animation-delay: 10s;
+}
+
+.slideshow li:nth-child(3) {
+    background-image: url(https://image.shutterstock.com/image-photo/university-graduation-ceremonies-on-commencement-260nw-298297466.jpg);
+    animation-delay: 20s;
+}
+
+.slideshow li:nth-child(4) {
+    background-image: url(https://image.shutterstock.com/image-vector/vector-realistic-isolated-neon-sign-600w-1310563151.jpg);
+    animation-delay: 30s;
+}
+
+.slideshow li:nth-child(5) {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXgMdWSTfjCDYlSmKIY39ZMCjAp9mcvp5_4MEEIuUTNhajNrB5bA&s);
+    animation-delay: 40s;
+}
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}
+
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+
+.no-cssanimations .slideshow li {
+    opacity: 1;
+}

@@ -52,6 +52,8 @@ app.use(function(req, res, next) {
 
 app.get("/", function(req, res) {
     res.render("landing");
+
+
 });
 
 // Alumni.remove({}, function(err) {
@@ -163,11 +165,12 @@ app.get("/alumni/:id/email", function(req, res) {
 app.post("/alumni/:id/email", function(req, res) {
     //res.render("email.ejs");
 
+    // kVGf8EzjWNdVEAPZnaGKPEhf27eSqCdIEVOJQzgp
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'kumaramankeshu@gmail.com',
-            pass: ''
+            user: config.mlab.username,
+            pass: config.mlab.password
         }
     });
     const string1 = req.params;
@@ -204,7 +207,7 @@ app.post("/alumni/:id/email", function(req, res) {
 
 //======================================================
 //Send Message ROUTES
-//=======================================================
+//======================================================
 app.get("/alumni/:id/message", function(req, res) {
     Alumni.findById(req.params.id, function(err, foundalumni) {
         if (err) {
@@ -222,7 +225,7 @@ app.get("/alumni/:id/message", function(req, res) {
 app.post("/alumni/:id/message", function(req, res) {
 
 
-    var sender = '+17209247273';
+    var sender = '+12562428531';
 
     var message = req.body.text;
     // Details about Visitor $ { name }
@@ -245,7 +248,7 @@ app.post("/alumni/:id/message", function(req, res) {
                     body: message
                 })
                 .then(message => console.log(`
-                Checkin SMS sent to Host: $ { foundalumni.name }
+                 SMS sent to Alumni: $ {  }
                 ` + message.sid))
                 .catch((error) => {
                     console.log(error);
@@ -258,6 +261,7 @@ app.post("/alumni/:id/message", function(req, res) {
 //CREATE - add new alumni to database
 app.post("/alumni", isLoggedIn, function(req, res) {
     //get data from form and add to thriftstore array
+
     request('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAPzLdcKEPCe4SQf3-cdSnq5vmh_MRaHCs' +
 
         '&address=' + encodeURIComponent(req.body.address),
@@ -308,9 +312,8 @@ app.post("/alumni", isLoggedIn, function(req, res) {
                         name: req.user.name
                     }
                 };
-                //redirect back to thriftfinder page
-                //create a new thrift store and save to database
-                console.log("Reached Alumni");
+
+
                 Alumni.create(newalumni, function(err, newlyCreated) {
                     if (err) {
                         console.log(err);
