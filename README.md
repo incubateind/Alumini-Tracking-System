@@ -5,13 +5,13 @@ Alumini Tracking System ( Currently there is no mechanism for colleges to keep a
 Hence the problem is to develop a web based application for colleges to keep a track of Alumini)
 ## Technologies Used
 
-Frontend : HTML ,CSS ,JAVASCRIPT,Bootstrap, ParticlesJS.
+Frontend : HTML, CSS, JAVASCRIPT, Bootstrap, ParticlesJS.
 
 Backend  : NodeJS
 
 Database : MongoDB
 
-API's    :  HERE , Twilio, nodemailer , Google maps API.
+API's    :  HERE, Twilio, nodemailer , Google maps API.
 
 
 
