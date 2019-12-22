@@ -1,0 +1,309 @@
+@import url(https://fonts.googleapis.com/css?family=Oxygen:700,400,300);
+html {
+    font-family: "Oxygen", sans-serif;
+}
+
+.container {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 5px;
+    max-width: 40rem;
+    margin: 0 auto;
+    margin-top: 100px;
+    min-height: 300px;
+    background-color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.22), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+.form__name {
+    font-family: "Oxygen";
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: 900;
+    background-color: #15A4FA;
+    padding: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.time__container,
+.message__container,
+.contact__container,
+.form__group,
+.checkboxes__container {
+    padding: 20px 50px;
+}
+
+.form__time,
+.form__contact {
+    color: #47536A;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.form__time .date,
+.form__time .time,
+.form__time .timezone,
+.chkbx,
+.form__time .cname,
+.imginp,
+.form__time .cnum,
+.form__time .email,
+.form__contact .date,
+.form__contact .time,
+.form__contact .timezone,
+.form__contact .cname,
+.form__contact .cnum,
+.form__contact .email {
+    display: inline-block;
+}
+
+.form__time .date label,
+.form__time .time label,
+.chkbx,
+.form__time .timezone label,
+.imginp,
+.form__time .cname label,
+.form__time .cnum label,
+.form__time .email label,
+.form__contact .date label,
+.form__contact .time label,
+.form__contact .timezone label,
+.form__contact .cname label,
+.form__contact .cnum label,
+.form__contact .email label {
+    margin-bottom: 10px;
+}
+
+.form__time .date label,
+.form__time .date input,
+.chkbx,
+.form__time .time label,
+.imginp,
+.form__time .time input,
+.form__time .timezone label,
+.form__time .timezone input,
+.form__time .cname label,
+.form__time .cname input,
+.form__time .cnum label,
+.form__time .cnum input,
+.form__time .email label,
+.form__time .email input,
+.form__contact .date label,
+.form__contact .date input,
+.form__contact .time label,
+.form__contact .time input,
+.form__contact .timezone label,
+.form__contact .timezone input,
+.form__contact .cname label,
+.form__contact .cname input,
+.form__contact .cnum label,
+.form__contact .cnum input,
+.form__contact .email label,
+.form__contact .email input {
+    display: block;
+    width: 200px;
+}
+
+.form__time .time,
+.form__time .cnum,
+.form__contact .time,
+.chkbx,
+.form__contact .cnum,
+.imginp {
+    margin-left: 20px;
+}
+
+.form__time .timezone,
+.form__time .email,
+.form__contact .timezone,
+.chkbx,
+.form__contact .email,
+.imginp {
+    margin-top: 10px;
+    display: block;
+}
+
+.form__time .timezone input,
+.chkbx,
+.form__time .email input,
+.form__contact .timezone input,
+.imginp,
+.form__contact .email input {
+    width: 200px;
+}
+
+.section {
+    color: #47536A;
+}
+
+.section .box {
+    vertical-align: middle;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 900;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    border-radius: 50px;
+    border: 1px solid #47536A;
+    background-color: #47536A;
+    text-align: center;
+    color: #fff;
+}
+
+.section span {
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+textarea {
+    box-sizing: border-box;
+    font-weight: normal;
+    padding: 5px;
+    margin-top: 20px;
+    border: 1px solid #A4A9C5;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #15A4FA;
+}
+
+textarea:focus {
+    border-color: #15A4FA;
+}
+
+textarea::-webkit-input-placeholder {
+    font-weight: 300;
+    color: #A9A9A9;
+}
+
+textarea:-ms-input-placeholder {
+    font-weight: 300;
+    color: #A9A9A9;
+}
+
+textarea::-ms-input-placeholder {
+    font-weight: 300;
+    color: #A9A9A9;
+}
+
+textarea::placeholder {
+    font-weight: 300;
+    color: #A9A9A9;
+}
+
+select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    border: 1px solid #A4A9C5;
+    font-size: 0.8rem;
+    padding: 12px 10px;
+    background-color: transparent;
+    color: #15A4FA;
+    outline: none;
+    width: 60%;
+}
+
+select:active {
+    border-color: #15A4FA;
+}
+
+input {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: 1px solid #A4A9C5;
+    border-radius: 3px;
+    outline: none;
+    padding: 10px;
+    transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #15A4FA;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: #15A4FA;
+}
+
+input:focus {
+    border-color: #15A4FA;
+}
+
+input::-webkit-input-placeholder {
+    font-weight: 500;
+    color: #A9A9A9;
+}
+
+input:-ms-input-placeholder {
+    font-weight: 500;
+    color: #A9A9A9;
+}
+
+input::-ms-input-placeholder {
+    font-weight: 500;
+    color: #A9A9A9;
+}
+
+input::placeholder {
+    font-weight: 500;
+    color: #A9A9A9;
+}
+
+input[type=date] {
+    text-transform: uppercase;
+}
+
+.form__confirmation {
+    padding: 10px 55px;
+    /* align-content:center; */
+}
+
+button {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: #15A4FA;
+    border: 1px solid #DADDE8;
+    color: #fff;
+    padding: 18px;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    left: 350px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #1293e1;
+}
+
+button:active {
+    background-color: #1083c8;
+}
+
+
+/* ---- reset ---- */
+
+body {
+    background-color: lightskyblue;
+}

@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Oxygen:700,400,300);
+@import url(https://fonts.googleapis.com/css?family=Oxygen:700,400,300);
+html {
+    font-family: "Oxygen", sans-serif;
+}
+
+body {
+    margin: 0;
+    font: normal 75% Arial, Helvetica, sans-serif;
+}
+
+.padding {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+canvas {
+    display: block;
+    z-index: -1;
+}
+
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: lightseagreen;
+    background-color: black;
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 100%;
+}
+
+#abc {
+    padding-left: 20%;
+}

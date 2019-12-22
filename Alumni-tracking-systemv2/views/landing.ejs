@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ALUMNI TRACKING SYSTEM</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheet/landing.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+    <audio class="myAudio">
+        <source src="gamingmusic.mp3" type="audio/mp3">
+    </audio>
+</head>
+
+<body>
+
+
+
+    <script>
+        var x = document.querySelector(".myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+    </script>
+
+
+    <a class="play-btn" onclick="playAudio()" href="#"></a>
+
+    <div class="container">
+
+    </div>
+
+    <div id="landing-header">
+        <h1 class="display-1">
+            </h1class> Welcome to ALUMNI TRACKING SYSTEM!</h1>
+        <a class="btn btn-lg btn-success" onclick="playAudio()" href="/alumni">View All Alumnis</a>
+        <!-- // <a onclick="playAudio()" class=" btn btn-lg btn-success " href="/alumni">View All Alumnis</a> -->
+    </div>
+
+    <ul class="slideshow ">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <% include partials/footer %>

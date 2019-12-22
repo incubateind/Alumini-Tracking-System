@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;"> EDIT
+                <%=alumni.name %>
+            </h1>
+            <div style="width: 30%; margin: 30px auto;">
+                <form action="/alumni/<%= alumni._id%>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[name]" value="<%= alumni.name%>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[image]" value="<%= alumni.image%>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[college]" value="<%= alumni.college%>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[branch]" value="<%= alumni.branch%>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[mobile]" value="<%= alumni.mobile%>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[email]" value="<%= alumni.email%>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[batch]" value="<%= alumni.batch%>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="alumni[address]" value="<%= alumni.address%>">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                    </div>
+
+
+                </form>
+                <a href="/alumni">Go Back</a>
+            </div>
+
+        </div>
+    </div>
+    <% include ../partials/footer %>
