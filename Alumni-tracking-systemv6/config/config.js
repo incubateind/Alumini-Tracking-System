@@ -7,7 +7,7 @@ config.twilio = {
 
 config.mlab = {
     username: 'kumaramankeshu@gmail.com',
-    password: 'TeraBaapB**DK'
+    password: 'TeraBaapB**K'
 };
 
 config.port = 3000;
