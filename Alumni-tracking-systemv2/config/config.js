@@ -1,12 +1,12 @@
 var config = {};
 
 config.twilio = {
-    authToken: '',
-    accountSid: ''
+    authToken: '73340ec2d5a54a0cd64234dd77cd33c5',
+    accountSid: 'AC533dc93a5356e1754168073497e5cc00'
 };
 
 config.mlab = {
-    username: '@gmail.com',
+    username: 'kumaramankeshu@gmail.com',
     password: ''
 };
 
