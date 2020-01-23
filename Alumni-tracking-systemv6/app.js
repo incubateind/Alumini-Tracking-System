@@ -10,7 +10,7 @@ var express = require("express"),
     request = require('request'),
     nodemailer = require('nodemailer'),
     twilio = require('twilio');
-var config = require('./config/config.js');
+var config = require('./Config/config.js');
 var client = new twilio(config.twilio.accountSid, config.twilio.authToken);
 
 

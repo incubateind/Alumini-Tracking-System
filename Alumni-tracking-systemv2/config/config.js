@@ -6,7 +6,7 @@ config.twilio = {
 };
 
 config.mlab = {
-    username: '@gmail.com',
+    username: '',
     password: ''
 };
 
